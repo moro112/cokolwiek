@@ -16,3 +16,4 @@ class Case(models.Model):
 class Item(models.Model):
     name = models.CharField(max_length=256)
     value = models.DecimalField(max_digits=3, decimal_places=2)
+

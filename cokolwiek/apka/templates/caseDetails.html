@@ -1,14 +1,15 @@
 {% extends "home.html" %}
 
 {% block content %}
+<form method="post">
+    {% csrf_token %}
 <ul>
         {% for item in items %}
-        <li>{{ case.name }} {{ case.price }}</li>
         <li>{{ item.name }} {{ item.value}}zł</li>
         {% endfor %}
 
 </ul>
-
-    <input type="submit" value="wyślij">
+    <input type="submit" value="wylosuj">
+</form>
 
 {% endblock %}

@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
 from .forms import *
+import random
 
 
 # Create your views here.
@@ -61,8 +62,8 @@ class CreateUserView(View):
 
 
 class ProfilView(View):
-    def get(self, request, user_id):
-        random = User.objects.get(id=user_id)
+    def get(self, request):
+        random = request.user
         return render(request, 'profil.html', {"user": random})
 
 
@@ -80,7 +81,7 @@ class AddMoneyView(View):
             value = int(form.cleaned_data["value"])
             user.money += value
             user.save()
-            return HttpResponseRedirect(reverse('user', args=[user.id]))
+            return HttpResponseRedirect(reverse('user'))
 
 
 class CaseView(View):
@@ -95,6 +96,22 @@ class CaseDetailsView(View):
         items = case.item_list.all()
         return TemplateResponse(request, 'caseDetails.html', {"items": items})
 
+    def post(self, request, pk):
+        case = Case.objects.get(pk=pk)
+        if request.user.money < case.price:
+            return HttpResponse("nie stac cie hahhahahahaha")
+        items = case.item_list.all()
+        object_list = range(len(items))
+        random.shuffle(object_list)
+        loss = object_list[0]
+        request.user.item.add(items[loss])
+        request.user.money -= case.price
+        request.user.save()
+        print(request.user.money)
+        return HttpResponseRedirect(reverse('inventory'))
+
 
 class InventoryView(View):
-    pass
+    def get(self, request):
+        items = request.user.item.all()
+        return TemplateResponse(request, 'inventory.html', {"items": items})

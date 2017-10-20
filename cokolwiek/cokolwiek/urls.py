@@ -23,9 +23,9 @@ urlpatterns = [
     url(r'^login$', LoginView.as_view(), name="login"),
     url(r'^logout$', LogoutView.as_view(), name='logout'),
     url(r'^create_user$', CreateUserView.as_view(), name='create'),
-    url(r'^profile/(?P<user_id>(\d)+)', ProfilView.as_view(), name='user'),
+    url(r'^profile$', ProfilView.as_view(), name='user'),
     url(r'^case$', CaseView.as_view(), name='cases'),
     url(r'^case_details/(?P<pk>(\d)+)', CaseDetailsView.as_view(), name='case'),
     url(r'^add_money$', AddMoneyView.as_view(), name='money'),
-    url(r'^inventory$', InventoryView.as_view(), name='inventory')
+    url(r'^inventory$', InventoryView.as_view(), name='inventory'),
 ]
