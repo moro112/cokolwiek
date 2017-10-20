@@ -1,0 +1,14 @@
+{% extends "home.html" %}
+
+{% block content %}
+<ul>
+        {% for item in items %}
+        <li>{{ case.name }} {{ case.price }}</li>
+        <li>{{ item.name }} {{ item.value}}zł</li>
+        {% endfor %}
+
+</ul>
+
+    <input type="submit" value="wyślij">
+
+{% endblock %}

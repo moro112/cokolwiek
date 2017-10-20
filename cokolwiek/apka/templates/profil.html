@@ -1,0 +1,12 @@
+{% extends "home.html" %}
+
+{% block content %}
+<ul>
+    <li>Imię: {{ user.first_name }}</li>
+    <li>Nazwisko: {{ user.last_name }}</li>
+    <li>Twoje środki: {{ user.money }}zł</li>
+    <p><a href="{% url 'money' %}">doładuj portfel</a></p>
+    <p><a href="{% url 'cases' %}">skrzynki </a></p>
+    <p><a href="{% url 'inventory' %}">twoje przedmioty</a></p>
+</ul>
+{% endblock %}

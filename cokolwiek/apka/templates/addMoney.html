@@ -1,0 +1,10 @@
+{% extends "profil.html" %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {{ id }}
+    <input type="submit" value="wyślij">
+</form>
+{% endblock %}

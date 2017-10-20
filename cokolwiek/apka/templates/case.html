@@ -1,0 +1,7 @@
+{% extends "home.html" %}
+
+{% block content %}
+    {% for case in cases %}
+            <p><a href="/case_details/{{case.id}}">{{ case.name }}</a> {{ case.price }}zł</p>
+        {% endfor %}
+{% endblock %}
